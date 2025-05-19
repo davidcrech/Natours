@@ -3,6 +3,10 @@
   "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": "error",
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": "function", "next": "*" }
+    ],
     "spaced-comment": "off",
     "no-console": "warn",
     "consistent-return": "off",
