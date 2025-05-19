@@ -5,14 +5,15 @@ exports.getAllTours = async (req, res) => {
         // BUILD QUERY
         const { page, sort, limit, fields, ...queryObj } = req.query;
 
+        // ADVANCED FILTERING
+        let queryStr = JSON.stringify(queryObj);
+        queryStr = queryStr.replace(
+            /\b(gte|gt|lte|lt)\b/g,
+            (match) => `$${match}`
+        );
+        console.log(JSON.parse(queryStr));
+
         const query = Tour.find(queryObj);
-
-        // query
-        //     .where('duration')
-        //     .equals(5)
-        //     .where('difficulty')
-        //     .equals('easy');
-
         // EXECUTE QUERY
 
         const tours = await query;
