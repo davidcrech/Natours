@@ -21,3 +21,19 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`app running on ${port}...`);
 });
+
+process.on('unhandledRejection', (err) => {
+    console.log('UNHANDLER REJECTION');
+    console.log(err.name, err.message);
+    server.close(() => {
+        process.exit(1);
+    });
+});
+
+process.on('uncaughtException', (err) => {
+    console.log('UNCAUGHT EXCEPTION');
+    console.log(err.name, err.message);
+    server.close(() => {
+        process.exit(1);
+    });
+});
