@@ -4,12 +4,14 @@
   "description": "Learning node, express and mongodb",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "nodemon --no-warnings server.js",
+    "start:prod": "cross-env NODE_ENV=production nodemon --no-warnings server.js",
     "debug": "ndb server.js"
   },
   "author": "David",
   "license": "ISC",
   "dependencies": {
+    "cross-env": "^7.0.3",
     "dotenv": "^16.5.0",
     "express": "^4.21.2",
     "mongodb": "^6.16.0",
