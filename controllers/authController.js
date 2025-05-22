@@ -15,7 +15,8 @@ exports.signup = catchAsync(async (req, res, next) => {
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
-        passwordConfirm: req.body.passwordConfirm
+        passwordConfirm: req.body.passwordConfirm,
+        passwordChangedAt: req.body.passwordChangedAt
     });
 
     const token = signToken(newUser._id);
@@ -71,7 +72,13 @@ exports.protect = catchAsync(async (req, res, next) => {
     );
     console.log(decoded);
     // check if user still exists
+    const freshUser = await User.findById(decoded.id);
+    if (!freshUser) {
+        return next(new AppError('the user does no longer exists', 401));
+    }
     // check if user changed password after jwt token was issued
-
+    if (freshUser.changedPasswordAfter(decoded.iat)) {
+        return next(new AppError('user recently changed password', 401));
+    }
     next();
 });
