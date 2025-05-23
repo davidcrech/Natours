@@ -1,6 +1,9 @@
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
+const mongoSanitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
+const hpp = require('hpp');
 const express = require('express');
 
 const AppError = require('./utils/appError');
@@ -32,6 +35,26 @@ app.use('/api', limiter);
 app.use(
     express.json({
         limit: '10kb'
+    })
+);
+
+// data sanitization against nosql query injection
+app.use(mongoSanitize());
+
+// data sanitization against XSS
+app.use(xss());
+
+// prevent param polution
+app.use(
+    hpp({
+        whitelist: [
+            'duration',
+            'ratingsQuantity',
+            'ratingsAverage',
+            'difficulty',
+            'maxGroupSize',
+            'price'
+        ]
     })
 );
 
