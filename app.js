@@ -1,4 +1,6 @@
 const morgan = require('morgan');
+const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
 const express = require('express');
 
 const AppError = require('./utils/appError');
@@ -8,13 +10,32 @@ const userRouter = require('./routes/userRoutes');
 
 const app = express();
 
-// 1) MIDDLEWARES
+// 1) GLBOAL MIDDLEWARES
+// security http headers
+app.use(helmet());
 
+// dev login
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
-app.use(express.json());
+// rate limit
+const limiter = rateLimit({
+    max: 100,
+    windowsMs: 60 * 60 * 1000,
+    message: 'too many request, try again in  1 hour'
+});
+
+app.use('/api', limiter);
+
+// body parser, reads data from body into req.body
+app.use(
+    express.json({
+        limit: '10kb'
+    })
+);
+
+// serving static files
 app.use(express.static(`${__dirname}/public`));
 
 // app.use((req, res, next) => {
