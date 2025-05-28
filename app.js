@@ -6,6 +6,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 const express = require('express');
+const cookieParser = require('cookie-parser');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -50,6 +51,8 @@ app.use(
 //alternative
 
 // 1) GLBOAL MIDDLEWARES
+
+app.use(cookieParser());
 
 // serving static files
 app.use(express.static(path.join(__dirname, 'public')));
