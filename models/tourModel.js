@@ -18,6 +18,7 @@ const tourSchema = new mongoose.Schema(
                 'A tour name must have more or equal then 10 characters'
             ]
         },
+        slug: String,
         duration: {
             type: Number,
             required: [true, 'A tour must have a duration']
