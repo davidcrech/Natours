@@ -31,11 +31,11 @@ const reviews = JSON.parse(
 //IMPORT DATA INTO DATABASE
 const importData = async () => {
     try {
-        await Tour.create(tours);
         await User.create(users, { validateBeforeSave: false });
+        await Tour.create(tours);
         await Review.create(reviews);
         console.log('Data successfully loaded!');
-    } catch {
+    } catch (err) {
         console.log(err);
     }
     process.exit();
