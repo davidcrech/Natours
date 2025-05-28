@@ -13235,7 +13235,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
                                                         return (0,
                                                         _axios.default)({
                                                             method: 'POST',
-                                                            url: 'http://127.0.0.1:3000/api/v1/users/login',
+                                                            url: 'http://127.0.0.1:8000/api/v1/users/login',
                                                             data: {
                                                                 email: email,
                                                                 password:
@@ -13320,7 +13320,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
                                                     _context2.next = 3;
                                                     return (0, _axios.default)({
                                                         method: 'GET',
-                                                        url: 'http://127.0.0.1:3000/api/v1/users/logout'
+                                                        url: 'http://127.0.0.1:8000/api/v1/users/logout'
                                                     });
 
                                                 case 3:
@@ -13463,8 +13463,8 @@ parcelRequire = (function (modules, cache, entry, globalName) {
                                                         _context.prev = 0;
                                                         url =
                                                             type === 'password'
-                                                                ? 'http://127.0.0.1:3000/api/v1/users/updateMyPassword'
-                                                                : 'http://127.0.0.1:3000/api/v1/users/updateMe';
+                                                                ? 'http://127.0.0.1:8000/api/v1/users/updateMyPassword'
+                                                                : 'http://127.0.0.1:8000/api/v1/users/updateMe';
                                                         _context.next = 4;
                                                         return (0,
                                                         _axios.default)({
