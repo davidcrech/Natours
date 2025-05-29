@@ -80,6 +80,7 @@ app.use(
         limit: '10kb'
     })
 );
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
 // data sanitization against nosql query injection
 app.use(mongoSanitize());
