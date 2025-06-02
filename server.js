@@ -3,21 +3,13 @@ const dotenv = require('dotenv');
 dotenv.config({ path: './config.env' });
 const app = require('./app');
 
-process.on('unhandledRejection', (err) => {
-    console.log('UNHANDLER REJECTION');
-    console.log(err.name, err.message);
-    console.log(err.stack);
-    process.exit(1);
-});
-
-// console.log(process.env);
+console.log('DATABASE:', process.env.DATABASE);
 const DB = process.env.DATABASE;
 
 mongoose
     .connect(DB, {
         useNewUrlParser: true,
-        useCreateIndex: true,
-        useFindAndModify: false
+        useUnifiedTopology: true
     })
     .then(() => console.log('db connection successful'));
 
