@@ -3,6 +3,13 @@ const dotenv = require('dotenv');
 dotenv.config({ path: './config.env' });
 const app = require('./app');
 
+process.on('unhandledRejection', (err) => {
+    console.log('UNHANDLER REJECTION');
+    console.log(err.name, err.message);
+    console.log(err.stack);
+    process.exit(1);
+});
+
 // console.log(process.env);
 const DB = process.env.DATABASE;
 
