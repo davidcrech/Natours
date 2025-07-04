@@ -34,14 +34,6 @@ It handles CRUD operations, authentication, authorization, file uploads, geospat
 
 ---
 
-## 📸 Screenshots
-
-<p align="center">
-  <img src="./screenshots/tour-route.png" alt="Tour route example" width="600" />
-</p>
-
----
-
 ## 📦 Getting Started
 
 ### 1️⃣ Clone the repo
